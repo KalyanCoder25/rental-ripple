@@ -1,0 +1,47 @@
+name: Java CI (Java 21)
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    # Build and test Java backend and build frontend
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+          cache-dependency-path: 'demo/pom.xml'
+
+      - name: Build backend (Maven)
+        working-directory: demo
+        run: |
+          chmod +x ./mvnw || true
+          ./mvnw -B -U package
+
+      - name: Run backend tests
+        working-directory: demo
+        run: |
+          ./mvnw -B -U test
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: npm
+
+      - name: Build frontend
+        working-directory: frontend
+        run: |
+          npm ci
+          npm run build
+

@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* page background + base font */
+body {
+  @apply m-0 min-h-screen flex items-center justify-center 
+         bg-gradient-to-b from-[#140B33] to-[#24114A]
+         text-white font-sans;
+}
+
+/* card */
+.auth-card {
+  @apply w-[380px] rounded-3xl bg-[#24124A] px-10 py-8
+         shadow-2xl flex flex-col items-center;
+}
+
+/* title */
+.auth-title {
+  @apply text-3xl font-semibold;
+}
+
+/* inputs */
+.auth-input {
+  @apply w-full mt-4 rounded-md bg-[#f3f3f3] text-[#333]
+         px-4 py-2 text-sm outline-none border border-transparent;
+}
+
+.auth-input::placeholder {
+  color: #999;
+}
+
+/* signup button */
+.auth-btn {
+  @apply w-full mt-6 rounded-md bg-[#5a33b8] py-2
+         text-sm font-semibold text-white border-0
+         cursor-pointer transition-transform duration-150;
+}
+
+.auth-btn:hover {
+  transform: translateY(-1px);
+}
+
+/* bottom “Login” pill */
+.auth-footer {
+  @apply mt-8 w-[220px] h-10 rounded-full bg-white
+         flex items-center justify-center text-sm font-medium
+         text-[#24124A] cursor-pointer;
+}
